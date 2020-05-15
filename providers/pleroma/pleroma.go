@@ -180,10 +180,10 @@ func userFromReader(r io.Reader, user *goth.User) error {
 	if err != nil {
 		return err
 	}
-	user.Email = u.Ocs.Data.EMail
-	user.Name = u.Ocs.Data.DisplayName
-	user.UserID = u.Ocs.Data.ID
-	user.Location = u.Ocs.Data.Address
+	user.Name = u.DisplayName
+	user.UserID = u.ID
+	user.AvatarURL = u.AvatarURL
+	user.DisplayName = u.DisplayName
 	return nil
 }
 
