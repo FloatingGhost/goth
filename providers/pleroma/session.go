@@ -3,13 +3,13 @@ package pleroma
 import (
 	"encoding/json"
 	"errors"
+	"github.com/floatingghost/goth"
+	"golang.org/x/oauth2"
 	"strings"
 	"time"
-
-	"github.com/floatingghost/goth"
 )
 
-// Session stores data during the auth process with Nextcloud.
+// Session stores data during the auth process with Discord
 type Session struct {
 	AuthURL      string
 	AccessToken  string
@@ -17,9 +17,8 @@ type Session struct {
 	ExpiresAt    time.Time
 }
 
-var _ goth.Session = &Session{}
-
-// GetAuthURL will return the URL set by calling the `BeginAuth` function on the Nextcloud provider.
+// GetAuthURL will return the URL set by calling the `BeginAuth` function on
+// the Discord provider.
 func (s Session) GetAuthURL() (string, error) {
 	if s.AuthURL == "" {
 		return "", errors.New(goth.NoAuthUrlErrorMessage)
@@ -27,10 +26,11 @@ func (s Session) GetAuthURL() (string, error) {
 	return s.AuthURL, nil
 }
 
-// Authorize the session with Nextcloud and return the access token to be stored for future use.
+// Authorize completes the authorization with Discord and returns the access
+// token to be stored for future use.
 func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string, error) {
 	p := provider.(*Provider)
-	token, err := p.config.Exchange(goth.ContextForClient(p.Client()), params.Get("code"))
+	token, err := p.config.Exchange(oauth2.NoContext, params.Get("code"))
 	if err != nil {
 		return "", err
 	}
@@ -45,17 +45,19 @@ func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string,
 	return token.AccessToken, err
 }
 
-// Marshal the session into a string
+// Marshal marshals a session into a JSON string.
 func (s Session) Marshal() string {
-	b, _ := json.Marshal(s)
-	return string(b)
+	j, _ := json.Marshal(s)
+	return string(j)
 }
 
+// String is equivalent to Marshal. It returns a JSON representation of the
+// of the session.
 func (s Session) String() string {
 	return s.Marshal()
 }
 
-// UnmarshalSession wil unmarshal a JSON string into a session.
+// UnmarshalSession will unmarshal a JSON string into a session.
 func (p *Provider) UnmarshalSession(data string) (goth.Session, error) {
 	s := &Session{}
 	err := json.NewDecoder(strings.NewReader(data)).Decode(s)
