@@ -183,7 +183,6 @@ func userFromReader(r io.Reader, user *goth.User) error {
 	user.Name = u.DisplayName
 	user.UserID = u.ID
 	user.AvatarURL = u.AvatarURL
-	user.DisplayName = u.DisplayName
 	return nil
 }
 
