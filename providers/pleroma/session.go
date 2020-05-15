@@ -1,4 +1,4 @@
-package nextcloud
+package pleroma
 
 import (
 	"encoding/json"
