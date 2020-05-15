@@ -11,7 +11,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/lestrrat-go/jwx/jwk"
-	"github.com/markbates/goth"
+	"github.com/floatingghost/goth"
 	"golang.org/x/oauth2"
 )
 

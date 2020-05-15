@@ -1,8 +1,8 @@
 package gitlab_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/gitlab"
+	"github.com/floatingghost/goth"
+	"github.com/floatingghost/goth/providers/gitlab"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

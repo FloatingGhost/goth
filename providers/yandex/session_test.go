@@ -1,8 +1,8 @@
 package yandex_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/yandex"
+	"github.com/floatingghost/goth"
+	"github.com/floatingghost/goth/providers/yandex"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

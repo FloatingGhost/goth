@@ -10,7 +10,7 @@ import (
 
 	"fmt"
 
-	"github.com/markbates/goth"
+	"github.com/floatingghost/goth"
 	"golang.org/x/oauth2"
 )
 

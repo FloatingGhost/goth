@@ -1,8 +1,8 @@
 package deezer_test
 
 import (
-	"github.com/markbates/goth"
-	"github.com/markbates/goth/providers/deezer"
+	"github.com/floatingghost/goth"
+	"github.com/floatingghost/goth/providers/deezer"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
